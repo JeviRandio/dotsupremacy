@@ -42,11 +42,46 @@
 	
 	const div = document.querySelector("div");
 	div.style.top = document.body.clientHeight/2 + "px"
-	let a = 0;
+	div.style.width = Math.sqrt(Math.pow(document.body.clientWidth,2) + Math.pow(document.body.clientHeight,2))/11;
+
+	
+	
+	let aa = 0, dd = 0, ww = 0, ss = 0;
+	let posX = 0, posY = 0;
+	let base = 0, height = 0;
 	setInterval(function(){
-		div.style.width = Math.sqrt(Math.pow(document.body.clientWidth,2) + Math.pow(document.body.clientHeight,2))/11;
+		let speed;
+		let totalX = (aa + dd);
+		let totalY = (ww + ss);
+		if(totalX != 0) base = 1;
+		else base = 0;
+		if(totalY != 0) height = 1;
+		else height = 0;
+		normal = Math.sqrt((base*base) + (height*height))
+		if (normal == 0) speed = 0;
+		else speed = 1/normal;
 		
-		grid.render(a, a*0.5)
-		a += 0.08
+		posX += totalX*speed;
+		posY += totalY*speed;
+		grid.render(posX, posY)
 	},40);
+	
+	let speed = 0.15;
+	document.onkeydown = function(ev){
+		switch(ev.key){
+			case 'a': aa = -speed; break;
+			case 'd': dd = speed; break;
+			case 'w': ww = -speed; break;
+			case 's': ss = speed; break;
+		}
+	}
+	
+	document.onkeyup = function(ev){
+		switch(ev.key){
+			case 'a': aa = 0; break;
+			case 'd': dd = 0; break;
+			case 'w': ww = 0; break;
+			case 's': ss = 0; break;
+		}
+	}
 </script>
