@@ -1,0 +1,52 @@
+<head>
+	<title>Dot Supremacy Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<style>
+	* {
+		margin: 0
+	}
+
+	body {
+		overflow: hidden;
+	}
+	
+	div {
+		aspect-ratio: 1;
+		background: #ccc;
+		border-radius: 50%;
+		z-index: 1;
+		position: fixed;
+		top: 50vw;
+		left: 50vw;
+		transform: translate(-50%, -50%)
+	}
+</style>
+
+<body>
+	<canvas></canvas>
+	<div></div>
+</body>
+
+<script src="assets/maps.js"></script>
+<script>
+	const canvas = document.querySelector("canvas");
+	canvas.width = document.body.clientWidth;
+	canvas.height = document.body.clientHeight;
+
+	grid = new Map.Grid(canvas);
+	grid.rankSmooth = true;
+	grid.score = 1;
+	grid.render(0, 0)
+	
+	const div = document.querySelector("div");
+	div.style.top = document.body.clientHeight/2 + "px"
+	let a = 0;
+	setInterval(function(){
+		div.style.width = Math.sqrt(Math.pow(document.body.clientWidth,2) + Math.pow(document.body.clientHeight,2))/11;
+		
+		grid.render(a, a*0.5)
+		a += 0.08
+	},40);
+</script>
