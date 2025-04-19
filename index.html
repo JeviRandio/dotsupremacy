@@ -37,7 +37,7 @@
 
 	grid = new Map.Grid(canvas);
 	grid.rankSmooth = true;
-	grid.score = 1;
+	grid.score = 27;
 	grid.render(0, 0)
 	
 	const div = document.querySelector("div");
@@ -66,7 +66,7 @@
 		grid.render(posX, posY)
 	},40);
 	
-	let speed = 0.15;
+	let speed = 0.18;
 	document.onkeydown = function(ev){
 		switch(ev.key){
 			case 'a': aa = -speed; break;
