@@ -174,7 +174,7 @@ const Map = {
 					clipX(x1), clipY(y1),
 					clipX(x2), clipY(y2)
 				]);
-
+				
 				const positionBuffer = ctx.createBuffer();
 				ctx.bindBuffer(ctx.ARRAY_BUFFER, positionBuffer);
 				ctx.bufferData(ctx.ARRAY_BUFFER, positions, ctx.STATIC_DRAW);
@@ -193,14 +193,15 @@ const Map = {
 				score: actual / tens,
 				interval: interval/(actual/tens)
 			}
-
-			let goer = centerX - ((trans.posX % 1) * trans.interval);
+			let goer = centerX - ((((trans.posX % 1)+1)%1) * trans.interval);
+			
 			let guideNum = Math.floor(trans.posX);
-
+			
 			while(goer - trans.interval >= 0){
 				goer -= trans.interval;
 				guideNum--;
-			}
+			}	
+			
 			let alphaer = (1 / Math.pow(trans.score, 1.5))-0.018;
 			while(goer <= this.width){
 				let x = goer;
@@ -214,7 +215,7 @@ const Map = {
 				guideNum++;
 			}
 			
-			goer = centerY - ((trans.posY % 1) * trans.interval);
+			goer = centerY - ((((trans.posY % 1)+1)%1) * trans.interval);
 			guideNum = Math.floor(trans.posY);
 
 			while(goer - trans.interval >= 0){
