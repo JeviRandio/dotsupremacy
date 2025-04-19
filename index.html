@@ -37,7 +37,7 @@
 
 	grid = new Map.Grid(canvas);
 	grid.rankSmooth = true;
-	grid.score = 27;
+	grid.score = 350;
 	grid.render(0, 0)
 	
 	const div = document.querySelector("div");
@@ -49,8 +49,10 @@
 	let aa = 0, dd = 0, ww = 0, ss = 0;
 	let posX = 0, posY = 0;
 	let base = 0, height = 0;
-	setInterval(function(){
-		let speed;
+	
+	function anim(){
+	requestAnimationFrame(anim)
+	let speed;
 		let totalX = (aa + dd);
 		let totalY = (ww + ss);
 		if(totalX != 0) base = 1;
@@ -64,7 +66,8 @@
 		posX += totalX*speed;
 		posY += totalY*speed;
 		grid.render(posX, posY)
-	},40);
+	}
+	anim();
 	
 	let speed = 0.18;
 	document.onkeydown = function(ev){
