@@ -84,4 +84,40 @@
 			case 's': ss = 0; break;
 		}
 	}
+	
+	document.ontouchstart = function(ev){
+		if(ev.touches[0].clientX > (canvas.width/2)+50)
+			dd = speed
+		else if(ev.touches[0].clientX < (canvas.width/2)-50){
+			aa = -speed
+		}
+		
+		if(ev.touches[0].clientY < (canvas.height/2)-50)
+			ss = -speed
+		else if(ev.touches[0].clientY > (canvas.height/2)+50)
+			ww = speed
+	}
+	
+	document.ontouchmove = function(ev){
+		if(ev.touches[0].clientX > (canvas.width/2)+50){
+			aa = 0;
+			dd = speed;
+		}
+		else if (ev.touches[0].clientX < (canvas.width/2)-50){
+			dd = 0;
+			aa = -speed
+		}
+		
+		if(ev.touches[0].clientY < (canvas.height/2)-50){
+			ww = 0
+			ss = -speed
+		}
+		else if(ev.touches[0].clientY > (canvas.height/2)+50){
+			ss = 0
+			ww = speed
+		}
+	}
+	document.ontouchend = function(){
+		dd = 0; aa = 0; ww = 0; ss = 0;
+	}
 </script>
